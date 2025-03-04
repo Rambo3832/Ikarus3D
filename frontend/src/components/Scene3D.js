@@ -2,7 +2,8 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Grid, Environment, useGLTF } from '@react-three/drei'
 import { useState, useEffect, Suspense } from 'react'
 import axios from 'axios'
-import SearchBar from './SearchBar'
+import SearchBar from './SearchBar.js'
+import UploadForm from './UploadForm'
 
 function Model({ modelUrl, onError, scale =1 }) {
   useGLTF.preload(modelUrl)
@@ -68,6 +69,7 @@ export default function Scene3D() {
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       <SearchBar onSearch={handleSearch} />
+      <UploadForm onUploadComplete={() => fetchModels()} />
       
       {error && (
         <div style={{
